@@ -1,13 +1,12 @@
 class Product:
-    discount = 0.85
-
-    def __new__(cls, *args, **kwargs):
-        return super().__new__(cls)
+    discount = 0.8
+    storage_of_products = []
 
     def __init__(self, name, price, amount):
         self.name = name
         self.price = price
         self.amount = amount
+        Product.storage_of_products.append(self)
 
     def get_total_price(self):
         self.price = self.price * self.amount
@@ -18,13 +17,3 @@ class Product:
         return self.price
 
 
-product1 = Product('Ноутбук', 20000, 2)
-product2 = Product('Наушники', 5000, 15)
-
-print(product1.get_total_price())
-print(product2.get_total_price())
-
-Product.discount = 0.6
-product1.apply_discount()
-print(product1.price)
-print(product2.price)
